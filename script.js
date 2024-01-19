@@ -61,7 +61,7 @@ function updateUI(data) {
 
     console.log(date,monthArr[month-1])
     tempOutput.innerHTML = `${data.current.temp_c}&deg;`;
-    dateOutput.innerHTML = `${date} ${monthArr[month-1]} ${year}`;
-    locationOutput.innerHTML = `${data.location.name},${data.location.country}`;
+    dateOutput.innerHTML = `${date} ${monthArr[month-1]} <br> ${year}`;
+    locationOutput.innerHTML = `${data.location.name} <br> ${data.location.country}`;
     weather.innerHTML = `${data.current.condition.text}`
 }
