@@ -52,10 +52,16 @@ function updateUI(data) {
     const tempOutput = document.getElementById('tempCelsius');
     const weather = document.getElementById('weatherDescription');
 
-    // let dateArr = [location.localtime]
+    let dateArr = data.location.localtime;
+    console.log(dateArr);
+    let date = parseInt(dateArr.split("").splice(8, 2).join(""), 10);
+    let month = parseInt(dateArr.split("").splice(5, 2).join(""), 10);
+    let year = dateArr.split("").splice(0,4).join("");
+    const monthArr = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
+    console.log(date,monthArr[month-1])
     tempOutput.innerHTML = `${data.current.temp_c}&deg;`;
-    dateOutput.innerHTML = `${data.location.localtime}`;
+    dateOutput.innerHTML = `${date} ${monthArr[month-1]} ${year}`;
     locationOutput.innerHTML = `${data.location.name},${data.location.country}`;
     weather.innerHTML = `${data.current.condition.text}`
 }
