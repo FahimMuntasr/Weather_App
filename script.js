@@ -21,7 +21,8 @@ const key = '785543dbdd8d40149f9130836240401';
 //         }
 //     }
 // }
-
+const codeMap = [1000,1003,1006,1009,1030,1063,1066,1069,1072,1087,1114,1117,1135,1147,1150,1153,1168,1171,1180,1183,1186,1189,1192,1195,1198,1201,1204,1207,1210,1213,1216,1219,1222,1225,1237,1240,1243,1246,1249,1252,1255,1258,1261,1264,1273,1279,1276,1282]
+const iconMap = [113,116,119,122,143,176,179,182,185,200,227,230,248,260,263,266,281,284,293,296,299,302,305,308,311,314,317,320,323,326,329,332,335,338,350,353,356,359,362,365,368,371,374,377,386,389,392,395]
 submitBtn.onclick = getData;
 
 function getData() {
@@ -59,11 +60,16 @@ function updateUI(data) {
     let month = parseInt(dateArr.split("").splice(5, 2).join(""), 10);
     let year = dateArr.split("").splice(0,4).join("");
     const monthArr = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-
+    let timeStatus;
+    if(data.current.is_day == 1){
+        timeStatus = 'day';
+    } else {
+        timeStatus = 'night';
+    }
     console.log(date,monthArr[month-1])
     tempOutput.innerHTML = `${data.current.temp_c}&deg;`;
     dateOutput.innerHTML = `${date} ${monthArr[month-1]} ${year}`;
     locationOutput.innerHTML = `${data.location.name} <br> ${data.location.country}`;
     weather.innerHTML = `${data.current.condition.text}`
-    icon.src = `${data.current.condition.icon}`;
+    icon.src = `64x64/${timeStatus}/${iconMap[codeMap.indexOf(data.current.condition.code)]}.png`;
 }
