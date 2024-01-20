@@ -51,6 +51,7 @@ function updateUI(data) {
     const dateOutput = document.getElementById('dateMonth');
     const tempOutput = document.getElementById('tempCelsius');
     const weather = document.getElementById('weatherDescription');
+    const icon = document.getElementById('icon');
 
     let dateArr = data.location.localtime;
     console.log(dateArr);
@@ -64,4 +65,5 @@ function updateUI(data) {
     dateOutput.innerHTML = `${date} ${monthArr[month-1]} <br> ${year}`;
     locationOutput.innerHTML = `${data.location.name} <br> ${data.location.country}`;
     weather.innerHTML = `${data.current.condition.text}`
+    icon.src = `${data.current.condition.icon}`;
 }
